@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get  '/users', to: 'application#users'
+  post '/create_user', to: 'application#create_user'
+  post '/update_user/:id', to: 'application#update_user'
+
+  root to: 'application#homepage'
 end
