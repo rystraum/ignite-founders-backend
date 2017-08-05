@@ -15,7 +15,13 @@ class ApplicationController < ActionController::Base
 
   def update_user
     @user = User.find(params[:id])
-    @user.update_attributes(data: params[:data])
+    data = {
+      activityProgress: params[:activityProgress],
+      gifts: params[:gifts],
+      connections: params[:connections],
+    }
+
+    @user.update_attributes(data: data.as_json)
 
     render json: @user
   end
