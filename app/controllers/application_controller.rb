@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_user
-    user = User.find_by(params[:id])
+    user = User.find_by(id: params[:id])
     user ||= User.find_by(email: params[:registrationInfo][:email])
     user ||= User.create(params.require(:registrationInfo).permit(:firstName, :lastName, :email, :birthDate))
     data = {
