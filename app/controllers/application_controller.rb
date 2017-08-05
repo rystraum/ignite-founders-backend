@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
 
   def update_user
     user = User.find_by(params[:id])
-    user ||= User.create(params.require(:registrationParams).permit(:firstName, :lastName, :email, :birthDate))
+    user ||= User.find_by(email: params[:registrationInfo][:email])
+    user ||= User.create(params.require(:registrationInfo).permit(:firstName, :lastName, :email, :birthDate))
     data = {
       activityProgress: params[:activityProgress],
       gifts: params[:gifts],
